@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [ maxError, setMaxError] = useState(0);
-  const [ answerLength, setAnswerLength ] = useState(0);
+  const [ answerLength, setAnswerLength ] = useState(3);
   const [ secretWord, setSecretWord] = useState('');
 
   useEffect(()=>{
@@ -16,7 +16,7 @@ function App() {
         setAnswerLength(word.length);
         setMaxError(word.length + 2);
       }else{
-        setAnswerLength(0);
+        setAnswerLength(3);
         setMaxError(1);
       }
 
