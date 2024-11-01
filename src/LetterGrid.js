@@ -11,14 +11,14 @@ const LetterGrid = ({secretWord, guessedLetters, answerLength, complete})=>{
       return count + (guessedLetters.includes(letter.toLowerCase()) ? 1 : 0);
     },0);
     setAnswer(newCount);
-  },[guessedLetters])
+  },[guessedLetters, secretWord])
   //answer 값이 변경되면 answerLength와 비교해서 정답 여부 파악
   useEffect(()=>{
     if(answer === answerLength){
       alert('정답입니다!');
       complete();
     }
-  },[answer])
+  },[answer, answerLength, complete])
 
   //let letters = secretWord.split('').map(word=> <span>{word}</span>);
   //secretWord의 문자열 배열로 변환하고, 그 배열에 각각의 값으로
