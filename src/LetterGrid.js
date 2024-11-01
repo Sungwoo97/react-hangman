@@ -14,7 +14,7 @@ const LetterGrid = ({secretWord, guessedLetters, answerLength, complete})=>{
   },[guessedLetters, secretWord])
   //answer 값이 변경되면 answerLength와 비교해서 정답 여부 파악
   useEffect(()=>{
-    if(answer === answerLength){
+    if(answerLength > 0 && answer === answerLength ){
       alert('정답입니다!');
       complete();
     }
