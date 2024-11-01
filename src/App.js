@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GameBoard from './GameBoard';
 import SetWord from './SetWord';
 import { Routes, Route } from "react-router-dom";
@@ -7,13 +7,20 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   const [ maxError, setMaxError] = useState(0);
   const [ answerLength, setAnswerLength ] = useState(0);
+  const [ secretWord, setSecretWord] = useState('');
 
-  const [ secretWord, setSecretWord] = useState(()=>{
-    let word = window.localStorage.getItem('secretWord') ;
-    word && word.length > 0 ? setAnswerLength(word.length) : setAnswerLength(0);
-    word && word.length > 0 ? setMaxError(word.length + 2) : setMaxError(1);
-    return word || '';
-  });
+  useEffect(()=>{
+      let word = window.localStorage.getItem('secretWord');
+      if(word && word.length > 0){
+        setSecretWord(word);
+        setAnswerLength(word.length);
+        setMaxError(word.length + 2);
+      }else{
+        setAnswerLength(0);
+        setMaxError(1);
+      }
+
+  },[])
 
   // if(secretWord.length > -1){
   //   setMaxError(secretWord.length + 2);
